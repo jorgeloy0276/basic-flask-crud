@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-white p-6 rounded-xl shadow-lg max-w-lg mx-auto">
+
+    <h1 class="text-2xl font-bold mb-5">
+        Nuevo Cliente
+    </h1>
+
+    <form method="POST">
+
+        <input
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                class="w-full border p-3 mb-3 rounded"
+        >
+
+        <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="w-full border p-3 mb-3 rounded"
+        >
+
+        <input
+                type="text"
+                name="phone"
+                placeholder="Teléfono"
+                class="w-full border p-3 mb-3 rounded"
+        >
+
+        <button
+                class="bg-blue-600 text-white px-5 py-3 rounded-lg">
+
+            Guardar
+
+        </button>
+
+        <a href="/"
+           class="bg-red-600 text-white px-5 py-3 rounded-lg"> Cancelar
+        </a>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

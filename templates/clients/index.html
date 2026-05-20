@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-white shadow-lg rounded-xl p-6">
+
+    <div class="flex justify-between mb-5">
+
+        <h1 class="text-3xl font-bold">
+            Clientes
+        </h1>
+
+        <a href="/add"
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+            Nuevo
+        </a>
+        <a href="/pdf"
+           class="bg-green-600 text-white px-4 py-2 rounded-lg">
+            Exportar PDF
+        </a>
+
+         <a href="/json"
+           class="bg-amber-600 text-white px-4 py-2 rounded-lg">
+            JSON
+        </a>
+
+
+    </div>
+
+    <!-- BUSCADOR -->
+    <form method="GET" class="mb-5">
+
+        <input
+                type="text"
+                name="search"
+                placeholder="Buscar..."
+                value="{{ search }}"
+                class="border p-2 rounded-lg w-64"
+        >
+
+        <button class="bg-gray-800 text-white px-4 py-2 rounded-lg">
+            Buscar
+        </button>
+
+    </form>
+
+    <!-- TABLA -->
+    <table class="w-full border">
+
+        <thead class="bg-gray-800 text-white">
+
+        <tr>
+            <th class="p-3 text-left">ID</th>
+            <th class="p-3 text-left">Nombre</th>
+            <th class="p-3 text-left">Email</th>
+            <th class="p-3 text-left">Teléfono</th>
+            <th class="p-3 text-left">Acciones</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for client in clients %}
+
+        <tr class="border-b hover:bg-gray-100">
+
+            <td class="p-3">{{ client[0] }}</td>
+            <td class="p-3">{{ client[1] }}</td>
+            <td class="p-3">{{ client[2] }}</td>
+            <td class="p-3">{{ client[3] }}</td>
+
+            <td class="p-3 flex gap-2">
+
+                <a href="/edit/{{ client[0] }}"
+                   class="bg-yellow-500 text-white px-3 py-1 rounded">
+                    Editar
+                </a>
+
+                <a href="/delete/{{ client[0] }}"
+                   class="bg-red-600 text-white px-3 py-1 rounded">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <!-- PAGINACIÓN -->
+    <div class="mt-5 flex gap-2">
+
+        {% for p in range(1, total_pages + 1) %}
+
+        <a href="/?page={{ p }}&search={{ search }}"
+           class="px-4 py-2 bg-gray-300 rounded">
+
+            {{ p }}
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
